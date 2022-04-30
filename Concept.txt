@@ -1,0 +1,8 @@
+name: SplitComputeMerge
+
+
+Operations:
+
+Split(Input, n_jobs) -> (Dict[Query, IData], MetaInfoInput)
+Compute(Query, IData) -> (Key, OData)
+Merge(Dict[Key, OData]) -> Output
