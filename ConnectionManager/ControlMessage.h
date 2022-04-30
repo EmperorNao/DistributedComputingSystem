@@ -19,7 +19,7 @@ namespace network {
     public:
         explicit ControlMessage(MessageType _type): type(_type) {}
         virtual void save(std::string filename) const = 0;
-        virtual void load(std::string filename) const = 0;
+        virtual void load(std::string filename) = 0;
 
         [[nodiscard]] MessageType get_type() const { return type; }
 
@@ -37,7 +37,7 @@ namespace network {
         number_of_files(n_files) {}
 
         void save(std::string filename) const final;
-        void load(std::string filename) const final;
+        void load(std::string filename) final;
         [[nodiscard]] uint64_t get_number_of_files() const { return number_of_files; }
 
     };

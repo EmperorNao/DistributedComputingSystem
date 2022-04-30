@@ -9,7 +9,7 @@ void network::DataMessage::save(std::string filename) const {
 
 }
 
-void network::DataMessage::load(std::string filename) const {
+void network::DataMessage::load(std::string filename) {
 
     std::ifstream file(filename);
     file.read(reinterpret_cast<char*>(type), sizeof(type));
