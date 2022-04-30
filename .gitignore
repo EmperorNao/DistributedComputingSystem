@@ -1,0 +1,5 @@
+cmake-build-debug/
+testing/
+.idea/
+*.txt
+!Concept.txt
