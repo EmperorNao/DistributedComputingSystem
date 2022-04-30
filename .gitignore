@@ -3,3 +3,4 @@ testing/
 .idea/
 *.txt
 !Concept.txt
+!CMakeLists.txt
