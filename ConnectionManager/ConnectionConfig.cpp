@@ -43,7 +43,7 @@ void network::ConnectionConfig::load(config::Config &config) {
 }
 
 
-void network::ConnectionConfig::save(std::string filename) {
+void network::ConnectionConfig::save(std::string filename) const {
 
     config::Config config;
     save(config);
@@ -52,7 +52,7 @@ void network::ConnectionConfig::save(std::string filename) {
 }
 
 
-void network::ConnectionConfig::save(config::Config &config) {
+void network::ConnectionConfig::save(config::Config &config) const {
 
     config.set("packet_size", std::to_string(packet_size));
     config.set("filename", filename);

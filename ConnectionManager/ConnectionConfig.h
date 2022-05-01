@@ -10,7 +10,7 @@ namespace network {
 
     enum class ManagerType {Server, Client};
 
-    class ConnectionConfig {
+class ConnectionConfig: public config::ConfigInterface {
 
     public:
         int64_t packet_size = 1024;                 // how many bytes contains in one packet
@@ -33,10 +33,10 @@ namespace network {
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        void load(std::string filename);
-        void load(config::Config& config);
-        void save(std::string filename);
-        void save(config::Config& config);
+        void load(std::string filename) override;
+        void load(config::Config& config) override;
+        void save(std::string filename) const override;
+        void save(config::Config& config) const override;
 
     };
 

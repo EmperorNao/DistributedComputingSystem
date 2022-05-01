@@ -8,6 +8,6 @@ include_directories(ConnectionManager)
 include_directories(config)
 include_directories(SplitComputeMerge)
 
-add_executable(DistributedComputingSystem main.cpp ConnectionManager/ISendable.h ConnectionManager/ConnectionManager.cpp ConnectionManager/ConnectionManager.h ConnectionManager/Socket.cpp ConnectionManager/Socket.h SplitComputeMerge/Distributable.h ConnectionManager/ControlMessage.cpp ConnectionManager/ControlMessage.h Config/Config.h Config/Config.cpp ConnectionManager/ConnectionConfig.cpp ConnectionManager/ConnectionConfig.h)
+add_executable(DistributedComputingSystem main.cpp ConnectionManager/ISendable.h ConnectionManager/ConnectionManager.cpp ConnectionManager/ConnectionManager.h ConnectionManager/Socket.cpp ConnectionManager/Socket.h SplitComputeMerge/Distributable.h ConnectionManager/ControlMessage.cpp ConnectionManager/ControlMessage.h Config/Config.h Config/Config.cpp ConnectionManager/ConnectionConfig.cpp ConnectionManager/ConnectionConfig.h SplitComputeMerge/Worker/WorkerConfig.cpp SplitComputeMerge/Worker/WorkerConfig.h)
 
 target_link_libraries(DistributedComputingSystem ws2_32)

@@ -44,6 +44,16 @@ namespace config {
 
         void get(std::string key, std::string &val) { if (exist(key)) val = this->content[key]; }
 
+    };
+
+
+    class ConfigInterface {
+
+    public:
+        virtual void load(std::string filename) = 0;
+        virtual void load(config::Config& config) = 0;
+        virtual void save(std::string filename) const = 0;
+        virtual void save(config::Config& config) const = 0;
 
     };
 
