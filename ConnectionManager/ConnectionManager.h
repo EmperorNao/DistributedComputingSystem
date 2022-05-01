@@ -6,6 +6,7 @@
 #include <thread>
 #include <utility>
 #include <limits>
+#include <chrono>
 
 
 #include "ISendable.h"
@@ -39,7 +40,7 @@ namespace network {
         static void send_with_socket(std::string filename, std::shared_ptr<Socket> s, int64_t packet_size);
 
     public:
-        explicit ConnectionManager(ConnectionConfig conf): config(std::move(conf)) {
+        explicit ConnectionManager(const ConnectionConfig& conf): config(conf) {
             WSADATA data;
             if (WSAStartup(MAKEWORD(2, 2), &data) != NO_ERROR) {
                 throw std::domain_error("Error in WSAStartup");

@@ -31,7 +31,7 @@ namespace network {
                 return;
             file.read(reinterpret_cast<char *>(content.data()), this->size);
             this->content.resize(file.gcount());
-            pos = this->content.empty();
+            pos = not this->content.empty();
 
         }
 

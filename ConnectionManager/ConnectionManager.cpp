@@ -18,8 +18,8 @@ void network::ConnectionManager::inner_receive(network::ConnectionConfig config)
     int sender_address_size = sizeof(sender_address);
 
     sender_address.sin_family = AF_INET;
-    sender_address.sin_port = htons(config.current_port);
-    sender_address.sin_addr.s_addr = inet_addr(config.current_address.c_str());
+    sender_address.sin_port = htons(config.send_port);
+    sender_address.sin_addr.s_addr = inet_addr(config.send_address.c_str());
 
     std::vector<int8_t> receive_buffer(config.packet_size);
     Socket s(config.current_address, config.current_port, false);
@@ -90,9 +90,10 @@ void network::ConnectionManager::inner_listening_and_sending(network::Connection
 
 void network::ConnectionManager::send_with_socket(std::string filename, std::shared_ptr<Socket> s, int64_t packet_size) {
 
-    FileSendable obj(std::move(filename));
+    FileSendable obj(filename);
     obj.set_size(packet_size);
 
+    //auto start = std::chrono::steady_clock::now();
     for (auto el: obj) {
 
         if (send(
@@ -105,5 +106,6 @@ void network::ConnectionManager::send_with_socket(std::string filename, std::sha
         }
 
     }
+    //std::cout << "Elapsed(ms)=" << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - start).count() << std::endl;
 
 }
