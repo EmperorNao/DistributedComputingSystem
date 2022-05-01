@@ -15,6 +15,7 @@ void SCM::WorkerConfig::load(config::Config &config) {
 
     config.get("local_address", local_address);
     config.get("server_address", server_address);
+    config.get("compute_executable_path", compute_executable_path);
 
 }
 
@@ -32,5 +33,6 @@ void SCM::WorkerConfig::save(config::Config &config) const {
 
     config.set("local_address", local_address);
     config.set("server_address", server_address);
+    config.set("compute_executable_path", compute_executable_path);
 
 }

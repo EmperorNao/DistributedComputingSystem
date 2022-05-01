@@ -13,6 +13,7 @@ namespace SCM {
 
         std::string local_address = "127.0.0.1";  // your address
         std::string server_address = "127.0.0.1";   // address of server
+        std::string compute_executable_path = "compute";
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
