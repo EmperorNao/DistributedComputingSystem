@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_EXE_LINKER_FLAGS "-static")
 
 include_directories(ConnectionManager)
+include_directories(config)
+include_directories(SplitComputeMerge)
 
-add_executable(DistributedComputingSystem main.cpp ConnectionManager/ISendable.h ConnectionManager/ConnectionManager.cpp ConnectionManager/ConnectionManager.h ConnectionManager/Socket.cpp ConnectionManager/Socket.h SplitComputeMerge/Distributable.h ConnectionManager/ControlMessage.cpp ConnectionManager/ControlMessage.h SplitComputeMerge/SimpleWorker.cpp SplitComputeMerge/SimpleWorker.h)
+add_executable(DistributedComputingSystem main.cpp ConnectionManager/ISendable.h ConnectionManager/ConnectionManager.cpp ConnectionManager/ConnectionManager.h ConnectionManager/Socket.cpp ConnectionManager/Socket.h SplitComputeMerge/Distributable.h ConnectionManager/ControlMessage.cpp ConnectionManager/ControlMessage.h Config/Config.h Config/Config.cpp ConnectionManager/ConnectionConfig.cpp ConnectionManager/ConnectionConfig.h)
 
 target_link_libraries(DistributedComputingSystem ws2_32)

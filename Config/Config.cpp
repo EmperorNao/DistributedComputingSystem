@@ -1,4 +1,4 @@
-#include "config.h"
+#include "Config.h"
 
 
 void config::ltrim(std::string &s) {

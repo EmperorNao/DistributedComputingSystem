@@ -12,7 +12,7 @@ void network::ConnectionManager::receive() {
 }
 
 
-void network::ConnectionManager::inner_receive(network::connection_configuration config) {
+void network::ConnectionManager::inner_receive(network::ConnectionConfig config) {
 
     sockaddr_in sender_address;
     int sender_address_size = sizeof(sender_address);
@@ -25,7 +25,7 @@ void network::ConnectionManager::inner_receive(network::connection_configuration
     Socket s(config.current_address, config.current_port, false);
 
     if (connect(s.get_descriptor(), (SOCKADDR*)&sender_address, sizeof(sender_address)) == SOCKET_ERROR) {
-        throw std::domain_error("Error in receive" + err());
+        throw std::domain_error("Error in receive " + err());
     }
 
     FileSendable obj(config.filename);
@@ -62,7 +62,7 @@ void network::ConnectionManager::listening_and_sending() {
 }
 
 
-void network::ConnectionManager::inner_listening_and_sending(network::connection_configuration config) {
+void network::ConnectionManager::inner_listening_and_sending(network::ConnectionConfig config) {
 
     Socket main_socket(config.current_address, config.current_port, true);
     listen(main_socket.get_descriptor(), SOMAXCONN);
