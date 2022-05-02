@@ -24,7 +24,9 @@ namespace scheme {
         std::ifstream file(filename);
 
         uint64_t number_of_files = 0;
-        file.read(reinterpret_cast<char *>(number_of_files), sizeof(number_of_files));
+        std::string buf;
+        std::getline(file, buf);
+        number_of_files = std::stoull(buf);
 
         lines.resize(number_of_files);
 
