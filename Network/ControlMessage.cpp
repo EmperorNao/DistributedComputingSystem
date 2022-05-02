@@ -17,8 +17,8 @@ void network::DataMessage::load(std::string filename) {
     std::ifstream file(filename);
     file.read(reinterpret_cast<char*>(type), sizeof(type));
 
-    uint64_t number_of_files;
-    file.read(reinterpret_cast<char*>(number_of_files), sizeof(number_of_files));
+    std::size_t number_of_files;
+    file.read(reinterpret_cast<char*>(number_of_files), sizeof(std::size_t));
 
     filenames.resize(number_of_files);
 

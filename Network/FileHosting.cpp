@@ -55,3 +55,12 @@ void network::FileHosting::send_files(std::vector<std::string> files, std::strin
     }
 
 }
+
+
+void network::FileHosting::waiting() {
+
+    manager.config.type = network::ManagerType::Server;
+    manager.config.filename = "tmp";
+    manager.run();
+
+}

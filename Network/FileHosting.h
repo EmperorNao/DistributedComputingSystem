@@ -12,20 +12,25 @@
 
 namespace network {
 
+    const static std::string message_name = "message.msg";
+
     class FileHosting {
 
     protected:
 
-        const std::string message_name = "message.msg";
         network::ConnectionConfig inet_config;
         network::ConnectionManager manager;
 
+        virtual void waiting() final;
         virtual void ping(std::string address) final;
         virtual std::vector<std::string> get_files() final;
         virtual void send_files(std::vector<std::string> files, std::string address) final;
 
     public:
-        explicit FileHosting(): manager(inet_config) {}
+
+        explicit FileHosting(): manager(inet_config) {
+
+        }
 
     };
 
