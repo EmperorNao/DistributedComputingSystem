@@ -16,6 +16,10 @@ namespace scheme {
 
     std::string construct_eval_string(std::vector<std::string> &files);
 
+    bool is_number(char* s);
+
+    std::vector<std::string> parse_args(char **args, int number_of_args, int start_position);
+
 }
 
 
