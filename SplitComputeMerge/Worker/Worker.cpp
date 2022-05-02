@@ -4,7 +4,7 @@
 void SCM::Worker::run() {
 
     // waiting for getting ping by master
-    waiting_master();
+    waiting();
 
     // get compute_program
     get_compute_executable();
@@ -26,16 +26,6 @@ void SCM::Worker::run() {
     send_files(key, config.master_address);
     send_files(data_output, config.master_address);
 
-
-}
-
-
-void SCM::Worker::waiting_master() {
-
-    manager.config.type = network::ManagerType::Server;
-    manager.config.filename = "tmp";
-
-    manager.run();
 
 }
 

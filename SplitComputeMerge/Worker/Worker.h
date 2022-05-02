@@ -18,12 +18,9 @@ class Worker: public network::FileHosting {
 
     private:
         WorkerConfig config;
-        const std::string message_name = "message.msg";
         network::ConnectionConfig inet_config;
         network::ConnectionManager manager;
 
-
-        void waiting_master();
         void get_compute_executable();
         void compute(SCM::Query query, SCM::FileData data);
 
