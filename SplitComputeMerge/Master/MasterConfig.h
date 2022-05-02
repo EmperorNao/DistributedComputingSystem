@@ -13,11 +13,19 @@ namespace SCM {
 
         std::string local_address = "127.0.0.1";  // your address
 
-        std::string split_executable_path = "compute"; // path to compute operation
+        std::string split_executable_path = "split"; // path to split operation
+        std::string compute_executable_path = "compute"; // path to compute operation
         std::string merge_executable_path = "merge"; // path to merge operation
 
         std::string input = "input";                    // file with keys description
         std::string worker_ips = "ips";                    // file with workers ips
+
+        std::string query = "query";                    // file with query files generated after split
+        std::string query_data = "query_data";                    // file with data files generated after split
+
+        std::string key = "key";                    // file with query files generated after split
+        std::string key_data = "key_data";                    // file with data files generated after split
+
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
