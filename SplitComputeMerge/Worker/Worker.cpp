@@ -23,8 +23,8 @@ void SCM::Worker::run() {
     // send results back
     ping(config.master_address);
 
-    send_files(key);
-    send_files(data_output);
+    send_files(key, config.master_address);
+    send_files(data_output, config.master_address);
 
 
 }
@@ -40,51 +40,6 @@ void SCM::Worker::waiting_master() {
 }
 
 
-SCM::FileData SCM::Worker::get_files() {
-
-    network::DataMessage msg;
-
-    manager.config.type = network::ManagerType::Client;
-    manager.config.filename = message_name;
-    manager.run();
-
-    msg.load(message_name);
-
-    auto names = msg.get_files();
-    for (auto& filename: names) {
-
-        manager.config.filename = filename;
-        manager.run();
-
-    }
-
-    return names;
-
-}
-
-
-void SCM::Worker::send_files(SCM::FileData files) {
-
-    network::DataMessage msg;
-
-    msg.set_files(files);
-    msg.save(message_name);
-
-    manager.config.filename = message_name;
-    manager.config.type = network::ManagerType::Server;
-    manager.config.send_address = config.master_address;
-    manager.run();
-
-    for (auto& filename: files) {
-
-        manager.config.filename = filename;
-        manager.run();
-
-    }
-
-}
-
-
 void SCM::Worker::get_compute_executable() {
 
     manager.config.filename = config.compute_executable_name;
@@ -92,18 +47,6 @@ void SCM::Worker::get_compute_executable() {
     manager.config.send_address = config.master_address;
 
     manager.run();
-
-}
-
-
-void SCM::Worker::ping(std::string address) {
-
-    manager.config.filename = config.compute_executable_name;
-    manager.config.send_address = std::move(address);
-    manager.config.type = network::ManagerType::Client;
-
-    manager.run();
-
 
 }
 

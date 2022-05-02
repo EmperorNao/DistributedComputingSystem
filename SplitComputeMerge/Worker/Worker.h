@@ -6,6 +6,7 @@
 #include "ConnectionManager.h"
 #include "ControlMessage.h"
 #include "Distributable.h"
+#include "FileHosting.h"
 #include "exec.h"
 
 #include <utility>
@@ -13,7 +14,7 @@
 
 namespace SCM {
 
-    class Worker {
+class Worker: public network::FileHosting {
 
     private:
         WorkerConfig config;
@@ -23,12 +24,7 @@ namespace SCM {
 
 
         void waiting_master();
-        void ping(std::string address);
-
         void get_compute_executable();
-        SCM::FileData SCM::Worker::get_files();
-        void send_files(SCM::FileData);
-
         void compute(SCM::Query query, SCM::FileData data);
 
 
