@@ -20,8 +20,6 @@ namespace network {
 
     private:
 
-        ConnectionConfig config;
-
         static std::string err() {
 
             return std::to_string(WSAGetLastError());
@@ -40,6 +38,9 @@ namespace network {
         static void send_with_socket(std::string filename, std::shared_ptr<Socket> s, int64_t packet_size);
 
     public:
+
+        ConnectionConfig config;
+
         explicit ConnectionManager(const ConnectionConfig& conf): config(conf) {
             WSADATA data;
             if (WSAStartup(MAKEWORD(2, 2), &data) != NO_ERROR) {
