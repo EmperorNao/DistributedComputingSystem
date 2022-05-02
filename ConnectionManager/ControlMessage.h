@@ -3,6 +3,8 @@
 
 
 #include <iostream>
+#include <string>
+#include <vector>
 #include <fstream>
 
 
@@ -29,16 +31,20 @@ namespace network {
     class DataMessage: public ControlMessage {
 
     private:
-        uint64_t number_of_files;
+        std::vector<std::string> filenames;
 
     public:
-        explicit DataMessage(uint64_t n_files):
+        explicit DataMessage(std::vector<std::string> fnames = {}):
         ControlMessage(MessageType::DataMessage),
-        number_of_files(n_files) {}
+        filenames(fnames)
+        {}
 
         void save(std::string filename) const final;
         void load(std::string filename) final;
-        [[nodiscard]] uint64_t get_number_of_files() const { return number_of_files; }
+        [[nodiscard]] uint64_t get_number_of_files() const { return filenames.size(); }
+
+        [[nodiscard]] std::vector<std::string> get_files() const { return filenames; }
+        void set_files(std::vector<std::string> fnames) { filenames = fnames; }
 
     };
 
