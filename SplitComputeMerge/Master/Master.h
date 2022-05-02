@@ -15,7 +15,6 @@ namespace SCM {
 
     private:
         MasterConfig config;
-        void send_datas();
 
     public:
         explicit Master(const MasterConfig &conf) : config(conf) {};
