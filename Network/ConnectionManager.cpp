@@ -5,6 +5,7 @@ void network::ConnectionManager::receive() {
 
     if (config.threading) {
         std::thread t(inner_receive, this->config);
+        t.detach();
         return;
     }
     inner_receive(this->config);
@@ -55,6 +56,7 @@ void network::ConnectionManager::listening_and_sending() {
 
     if (config.threading) {
         std::thread t(inner_listening_and_sending, this->config);
+        t.detach();
         return;
     }
     inner_listening_and_sending(this->config);

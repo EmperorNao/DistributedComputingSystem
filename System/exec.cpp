@@ -26,7 +26,8 @@ namespace scheme {
         uint64_t number_of_files = 0;
         std::string buf;
         std::getline(file, buf);
-        number_of_files = std::stoull(buf);
+        if (not buf.empty())
+            number_of_files = std::stoull(buf);
 
         lines.resize(number_of_files);
 

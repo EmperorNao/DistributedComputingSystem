@@ -25,7 +25,7 @@ void SCM::Worker::run() {
 
     send_files(key, config.master_address);
     send_files(data_output, config.master_address);
-
+    std::cout << "Worker finished\n";
 
 }
 

@@ -25,23 +25,7 @@ void SCM::Master::run() {
     // merge
     merge(key_files, key_data_files);
 
-    std::cin.get();
-
-    // do splitting
-    // thread per each
-
-        // ping
-        // send query
-        // send data
-        // waiting
-        // get data back
-        // increase counter of how much is ok
-
-    // sleep while not get all cont ? or maybe mutex lock
-
-    // merging
-
-    // OK
+    std::cout << "Master finished";
 
 }
 
@@ -65,10 +49,17 @@ void SCM::Master::worker_interaction(std::string address, std::string query_file
 
 
     manager.config.filename = network::message_name;
-    manager.config.send_address = std::move(address);
+    manager.config.send_address = address;
     manager.config.type = network::ManagerType::Client;
 
     manager.run();
+
+
+    manager.config.filename = config.compute_executable_path;
+    manager.config.type = network::ManagerType::Server;
+    manager.config.send_address = address;
+    manager.run();
+
 
 
 
@@ -158,6 +149,7 @@ void SCM::Master::start_interactions(const std::vector<std::string>& workers_ips
     for (int64_t i = 0; i < n; ++i ) {
         std::thread t(worker_interaction, workers_ips[i], query_files[i], data_files[i], std::ref(config),
                       std::ref(number_threads_ended));
+        t.detach();
     }
 
 }
