@@ -156,8 +156,8 @@ void SCM::Master::start_interactions(const std::vector<std::string>& workers_ips
     number_threads_ended = 0;
     int64_t n = workers_ips.size();
     for (int64_t i = 0; i < n; ++i ) {
-        std::thread t(worker_interaction, workers_ips[i], query_files[i], data_files[i], config,
-                      number_threads_ended);
+        std::thread t(worker_interaction, workers_ips[i], query_files[i], data_files[i], std::ref(config),
+                      std::ref(number_threads_ended));
     }
 
 }
