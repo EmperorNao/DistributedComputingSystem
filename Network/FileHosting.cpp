@@ -12,29 +12,6 @@ void network::FileHosting::ping(std::string address) {
 }
 
 
-std::vector<std::string> network::FileHosting::get_files() {
-
-    network::DataMessage msg;
-
-    manager.config.type = network::ManagerType::Client;
-    manager.config.filename = message_name;
-    manager.run();
-
-    msg.load(message_name);
-
-    auto names = msg.get_files();
-    for (auto& filename: names) {
-
-        manager.config.filename = filename;
-        manager.run();
-
-    }
-
-    return names;
-
-}
-
-
 void network::FileHosting::send_files(std::vector<std::string> files, std::string address) {
 
     network::DataMessage msg;
@@ -53,6 +30,30 @@ void network::FileHosting::send_files(std::vector<std::string> files, std::strin
         manager.run();
 
     }
+
+}
+
+
+std::vector<std::string> network::FileHosting::get_files(std::string msg_name) {
+
+    network::DataMessage msg;
+
+    manager.config.type = network::ManagerType::Client;
+    manager.config.filename = msg_name;
+    manager.run();
+
+    msg.load(msg_name);
+
+    auto names = msg.get_files();
+    for (auto& filename: names) {
+
+        std::cout << "receiving " << filename << "\n";
+        manager.config.filename = filename;
+        manager.run();
+
+    }
+
+    return names;
 
 }
 

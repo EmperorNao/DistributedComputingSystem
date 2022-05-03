@@ -23,7 +23,7 @@ namespace network {
 
         virtual void waiting() final;
         virtual void ping(std::string address) final;
-        virtual std::vector<std::string> get_files() final;
+        virtual std::vector<std::string> get_files(std::string msg_name = "message.msg") final;
         virtual void send_files(std::vector<std::string> files, std::string address) final;
 
     public:

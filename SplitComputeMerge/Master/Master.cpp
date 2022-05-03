@@ -19,13 +19,14 @@ void SCM::Master::run() {
 
     while (number_threads_ended != number_of_workers);
 
-    auto key_files = scheme::extract_lines(config.query);
+    auto key_files = scheme::extract_lines(config.key);
     auto key_data_files = scheme::extract_lines(config.key_data);
 
     // merge
     merge(key_files, key_data_files);
 
     std::cout << "Master finished";
+    std::cin.get();
 
 }
 
@@ -65,9 +66,9 @@ void SCM::Master::worker_interaction(std::string address, std::string query_file
 
     files = scheme::extract_lines(query_file);
     msg.set_files(files);
-    msg.save(network::message_name);
+    msg.save(network::message_name + "1");
 
-    manager.config.filename = network::message_name;
+    manager.config.filename = network::message_name + "1";
     manager.config.type = network::ManagerType::Server;
     manager.config.send_address = address;
     manager.run();
@@ -82,9 +83,9 @@ void SCM::Master::worker_interaction(std::string address, std::string query_file
 
     files = scheme::extract_lines(data_file);
     msg.set_files(files);
-    msg.save(network::message_name);
+    msg.save(network::message_name + "2");
 
-    manager.config.filename = network::message_name;
+    manager.config.filename = network::message_name + "2";
     manager.config.type = network::ManagerType::Server;
     manager.config.send_address = address;
     manager.run();
@@ -95,8 +96,6 @@ void SCM::Master::worker_interaction(std::string address, std::string query_file
         manager.run();
 
     }
-
-
 
     manager.config.type = network::ManagerType::Server;
     manager.config.filename = "tmp";
@@ -132,7 +131,8 @@ void SCM::Master::worker_interaction(std::string address, std::string query_file
     for (auto& filename: files) {
 
         manager.config.filename = filename;
-        manager.run();
+
+    manager.run();
     }
 
     number_threads_ended += 1;
@@ -160,7 +160,7 @@ void SCM::Master::merge(std::vector<std::string> keys, std::vector<std::string> 
     std::string args;
     std::vector<std::string> files;
 
-    args += keys.size();
+    args += std::to_string(keys.size());
     args += " ";
 
     for (int64_t i = 0; i < keys.size(); ++i) {

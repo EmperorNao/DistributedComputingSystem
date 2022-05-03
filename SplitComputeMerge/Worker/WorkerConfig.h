@@ -13,7 +13,7 @@ namespace SCM {
 
         std::string local_address = "127.0.0.1";  // your address
         std::string master_address = "127.0.0.1";   // address of master
-        std::string compute_executable_name = "compute"; // compute name
+        std::string compute_executable_name = "compute.exe"; // compute name
 
         std::string key = "key";                    // file with keys description
         std::string data = "data";                    // file with datas description

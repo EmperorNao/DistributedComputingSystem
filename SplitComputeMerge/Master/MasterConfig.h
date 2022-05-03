@@ -13,9 +13,9 @@ namespace SCM {
 
         std::string local_address = "127.0.0.1";  // your address
 
-        std::string split_executable_path = "split"; // path to split operation
-        std::string compute_executable_path = "compute"; // path to compute operation
-        std::string merge_executable_path = "merge"; // path to merge operation
+        std::string split_executable_path = "split.exe"; // path to split operation
+        std::string compute_executable_path = "compute.exe"; // path to compute operation
+        std::string merge_executable_path = "merge.exe"; // path to merge operation
 
         std::string input = "input";                    // file with keys description
         std::string worker_ips = "ips";                    // file with workers ips

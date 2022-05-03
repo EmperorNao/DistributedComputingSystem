@@ -18,7 +18,7 @@ namespace scheme {
 
     bool is_number(char* s);
 
-    std::vector<std::string> parse_args(char **args, int number_of_args, int start_position);
+    std::vector<std::string> parse_args(char **args, int number_of_args, int& start_position);
 
 }
 

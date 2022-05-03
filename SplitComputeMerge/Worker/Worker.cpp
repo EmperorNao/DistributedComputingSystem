@@ -10,8 +10,11 @@ void SCM::Worker::run() {
     get_compute_executable();
 
     // get inputs
-    SCM::Query query = get_files();
-    SCM::FileData data_input = get_files();
+    SCM::Query query = get_files("message1.msg");
+
+    SCM::FileData data_input = get_files("message2.msg");
+
+
 
     // start compute
     compute(query, data_input);
@@ -26,6 +29,7 @@ void SCM::Worker::run() {
     send_files(key, config.master_address);
     send_files(data_output, config.master_address);
     std::cout << "Worker finished\n";
+    std::cin.get();
 
 }
 
