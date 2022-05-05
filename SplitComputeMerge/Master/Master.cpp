@@ -3,6 +3,7 @@
 
 void SCM::Master::run() {
 
+    std::cout << "Master started\n";
     auto workers_ip = scheme::extract_lines(config.worker_ips);
     auto input = scheme::extract_lines(config.input);
 
@@ -25,7 +26,7 @@ void SCM::Master::run() {
     // merge
     merge(key_files, key_data_files);
 
-    std::cout << "Master finished";
+    std::cout << "Master finished\n";
     std::cin.get();
 
 }

@@ -23,10 +23,6 @@ void config::trim(std::string &s) {
 
 void config::Config::load(std::string filename, std::string delimiter) {
 
-    if (not filename.ends_with(".conf")) {
-        throw std::domain_error("Config file should have extension .conf");
-    }
-
     std::ifstream file(filename);
     std::string line;
 

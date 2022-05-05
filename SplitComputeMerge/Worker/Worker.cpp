@@ -3,6 +3,8 @@
 
 void SCM::Worker::run() {
 
+    std::cout << "Worker started\n";
+
     // waiting for getting ping by master
     waiting();
 

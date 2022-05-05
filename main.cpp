@@ -8,74 +8,51 @@
 #include "Worker/Worker.h"
 
 
-int main() {
-
-//    std::cout << "Option\n";
-//
-//
-////    config::Config config;
-////
-////    config.set("threading", "true");
-////    config.save("Test.conf");
-////
-////    config.refresh();
-////
-////    config.load("Test.conf");
-////    bool val = false;
-////    config.get_bool("threading", val);
-//    network::ConnectionConfig conf;
-//    network::ConnectionManager manager(conf);
-//
-//    int option;
-//    std::cout << "Input option: Client/Master (0/1)\n";
-//    std::cin >> option;
-//
-//    conf.filename = "test.txt";
-//    if (option) {
-//        conf.type = network::ManagerType::Server;
-//        conf.send_inf = true;
-//    } else {
-//        conf.type = network::ManagerType::Client;
-//        //conf.load("Connection.conf");
-//    }
-//
-//    //conf.save("Connection.conf");
-//
-//    manager.set_config(conf);
-//    manager.run();
-//    std::cin.get();
-//    std::cin.get();
-//
-//    return 0;
+int main(int argc, char** argv) {
 
     using namespace SCM;
 
+    if (argc == 1 or std::string(argv[1]) == "--help") {
+        std::cout << "Provide arguments:\n";
+        std::cout << "--type [master/worker]\n";
+        std::cout << "--config [config file name]\n";
+        return 0;
+    }
 
-    int opt;
-    std::cout << "Input Options Master/Worker (1/0)\n";
-    std::cin >> opt;
+    int opt = -1;
+    if (std::string(argv[1]) == "--type" and argc >= 3) {
+        if (std::string(argv[2]) == "master")
+            opt = 1;
+        if (std::string(argv[2]) == "worker")
+            opt = 0;
+    }
+
+    if (opt == -1) {
+        std::cout << "Provide right application type [master/worker]\n";
+        return 0;
+    }
+
+    std::string filename;
+    if (argc >= 5 and std::string(argv[3]) == "--config") {
+        filename = std::string(argv[4]);
+    }
 
     if (opt) {
 
         MasterConfig masterConfig;
-        masterConfig.load("MasterConfig.conf");
+        masterConfig.load(filename);
+
         Master m(masterConfig);
         m.run();
-        std::cin.get();
-        std::cin.get();
-        std::cin.get();
-
 
     }
     else {
 
         WorkerConfig workerConfig;
+        workerConfig.load(filename);
+
         Worker w(workerConfig);
         w.run();
-        std::cin.get();
-        std::cin.get();
-        std::cin.get();
-
 
     }
 

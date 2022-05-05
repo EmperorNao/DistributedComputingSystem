@@ -47,7 +47,6 @@ std::vector<std::string> network::FileHosting::get_files(std::string msg_name) {
     auto names = msg.get_files();
     for (auto& filename: names) {
 
-        std::cout << "receiving " << filename << "\n";
         manager.config.filename = filename;
         manager.run();
 
