@@ -31,9 +31,9 @@ namespace SCM {
 
     class Distributable {
 
-        virtual split_output split(FileData data_to_split, uint64_t number_of_workers) = 0;
-        virtual compute_output compute(Query query, FileData data_to_compute, MetaInfo meta_data) = 0;
-        virtual merge_output merge(Key key, FileData data_to_merge) = 0;
+        virtual void split(FileData data_to_split, uint64_t number_of_workers) = 0;
+        virtual void compute(Query query, FileData data_to_compute, MetaInfo meta_data) = 0;
+        virtual void merge(Key key, FileData data_to_merge) = 0;
 
     };
 

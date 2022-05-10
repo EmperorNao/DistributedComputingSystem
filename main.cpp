@@ -1,8 +1,4 @@
 #include <iostream>
-#include "ConnectionManager.h"
-#include "Config.h"
-#include "exec.h"
-
 
 #include "Master/Master.h"
 #include "Worker/Worker.h"
